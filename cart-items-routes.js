@@ -23,4 +23,15 @@ cartItems.post("/", (req, res) => {
   res.status(201).json(req.body);
 });
 
+cartItems.put("/:id", (req, res) => {
+  const selectedItem = cart.find(item => item.id === req.params.id);
+  if (selectedItem) {
+    const selectedIndex = cart.indexOf(selectedItem);
+    cart[selectedIndex] = req.body;
+    res.json(cart[selectedIndex]);
+  } else {
+    res.status(404).json("That item isn't in this cart!"); 
+  }
+});
+
 module.exports = cartItems;
