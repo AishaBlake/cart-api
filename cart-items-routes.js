@@ -34,4 +34,15 @@ cartItems.put("/:id", (req, res) => {
   }
 });
 
+cartItems.delete("/:id", (req, res) => {
+  let selectedItem = cart.find(item => item.id === req.params.id);
+  if (selectedItem) {
+    const selectedIndex = cart.indexOf(selectedItem);
+    cart.splice(selectedIndex, 1);
+    res.status(204).send();
+  } else {
+    res.status(404).json("That student isn't in this class!");
+  }
+});
+
 module.exports = cartItems;
