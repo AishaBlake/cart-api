@@ -18,4 +18,9 @@ cartItems.get("/:id", (req, res) => {
   }
 });
 
+cartItems.post("/", (req, res) => {
+  cart.push(req.body);
+  res.status(201).json(req.body);
+});
+
 module.exports = cartItems;
